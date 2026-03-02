@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doppel - 多身份浏览器工作台</title>
+    <meta
+      name="description"
+      content="Doppel 是一个多身份 Electron 浏览器工作台，支持身份隔离、Tab 管理、收藏夹主页与可视化配置。"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eef6ff',
+                100: '#d9eaff',
+                500: '#2563eb',
+                600: '#1d4ed8',
+                700: '#1e40af'
+              }
+            },
+            boxShadow: {
+              glow: '0 20px 45px -20px rgba(37, 99, 235, 0.45)'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .grid-bg {
+        background-image: radial-gradient(rgba(37, 99, 235, 0.11) 1px, transparent 1px);
+        background-size: 18px 18px;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased">
+    <div class="grid-bg min-h-screen">
+      <header class="mx-auto w-full max-w-6xl px-6 pt-8">
+        <nav class="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/95 px-5 py-3 shadow-sm backdrop-blur">
+          <div class="flex items-center gap-3">
+            <div class="h-9 w-9 rounded-lg bg-brand-500 text-white flex items-center justify-center font-semibold">D</div>
+            <div>
+              <p class="text-sm text-slate-500">Multi-Identity Workspace</p>
+              <p class="font-semibold">Doppel</p>
+            </div>
+          </div>
+          <a
+            href="https://github.com/crapthings/doppel"
+            class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+            >GitHub</a
+          >
+        </nav>
+      </header>
+
+      <main class="mx-auto w-full max-w-6xl px-6 pb-20">
+        <section class="pt-14 md:pt-20">
+          <div class="rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white via-blue-50 to-slate-100 px-7 py-12 shadow-glow md:px-12 md:py-16">
+            <p class="inline-flex rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+              Electron 多身份浏览器
+            </p>
+            <h1 class="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
+              一个窗口，管理多个身份工作流
+            </h1>
+            <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+              Doppel 帮你把账号隔离、标签管理和收藏整理整合到同一套体验里。
+              适合运营、客服、内容创作者和多账号协作场景。
+            </p>
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="https://github.com/crapthings/doppel/releases"
+                class="rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
+                >下载应用</a
+              >
+              <a
+                href="https://github.com/crapthings/doppel"
+                class="rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                >查看源码</a
+              >
+            </div>
+            <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-600">
+              <a class="underline decoration-slate-300 underline-offset-4 hover:text-brand-700" href="https://github.com/crapthings/doppel/releases/download/v0.1.0/Doppel-0.1.0.dmg">macOS 直接下载 (.dmg)</a>
+              <a class="underline decoration-slate-300 underline-offset-4 hover:text-brand-700" href="https://github.com/crapthings/doppel/releases/download/v0.1.0/Doppel.Setup.0.1.0.exe">Windows 直接下载 (.exe)</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-14 md:pt-16">
+          <div class="mb-6 flex items-end justify-between">
+            <h2 class="text-2xl font-bold tracking-tight md:text-3xl">核心功能</h2>
+            <p class="text-sm text-slate-500">开箱即用，面向日常多账号工作</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-lg font-semibold">多身份隔离</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">每个身份使用独立 partition，会话互不干扰，适合多账号并行操作。</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-lg font-semibold">Tab 管理</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">支持新建、关闭、切换与拖拽排序，重启后可恢复标签顺序。</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-lg font-semibold">收藏夹主页</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">新建标签默认打开 doppel://bookmarks，集中管理常用站点。</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-lg font-semibold">身份配置</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">支持头像、颜色和浏览器画像参数配置，便于快速区分与调试。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="pt-14 md:pt-16">
+          <div class="mb-6 flex items-end justify-between">
+            <h2 class="text-2xl font-bold tracking-tight md:text-3xl">产品截图</h2>
+            <p class="text-sm text-slate-500">应用界面预览</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            <button type="button" class="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm text-left transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-500" data-preview-src="./s1.png" data-preview-alt="Doppel 主界面预览">
+              <img src="./s1.png" alt="Doppel 主界面预览" class="h-44 w-full rounded-xl object-cover" loading="lazy" />
+            </button>
+            <button type="button" class="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm text-left transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-500" data-preview-src="./s2.png" data-preview-alt="Doppel 身份编辑预览">
+              <img src="./s2.png" alt="Doppel 身份编辑预览" class="h-44 w-full rounded-xl object-cover" loading="lazy" />
+            </button>
+            <button type="button" class="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm text-left transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-500" data-preview-src="./s3.png" data-preview-alt="Doppel 收藏夹预览">
+              <img src="./s3.png" alt="Doppel 收藏夹预览" class="h-44 w-full rounded-xl object-cover" loading="lazy" />
+            </button>
+          </div>
+        </section>
+
+        <section class="pt-14 md:pt-16">
+          <h2 class="text-2xl font-bold tracking-tight md:text-3xl">4 步开始使用</h2>
+          <ol class="mt-6 grid gap-4 md:grid-cols-2">
+            <li class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Step 1</p>
+              <p class="mt-2 font-semibold">下载并安装应用</p>
+              <p class="mt-1 text-sm text-slate-600">从 Release 页面下载对应系统安装包（macOS / Windows）。</p>
+            </li>
+            <li class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Step 2</p>
+              <p class="mt-2 font-semibold">创建身份并配置外观</p>
+              <p class="mt-1 text-sm text-slate-600">设置名字、头像、颜色，快速区分不同账号工作区。</p>
+            </li>
+            <li class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Step 3</p>
+              <p class="mt-2 font-semibold">在同一窗口并行处理多个站点</p>
+              <p class="mt-1 text-sm text-slate-600">通过 Tab 进行切换和排序，保持上下文清晰稳定。</p>
+            </li>
+            <li class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-600">Step 4</p>
+              <p class="mt-2 font-semibold">把常用站点加入收藏夹</p>
+              <p class="mt-1 text-sm text-slate-600">地址栏一键收藏，重复 URL 自动去重，减少重复输入。</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="pt-14 md:pt-16">
+          <h2 class="text-2xl font-bold tracking-tight md:text-3xl">常见问题</h2>
+          <div class="mt-6 space-y-3">
+            <details class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm" open>
+              <summary class="cursor-pointer font-semibold">安装时提示“未知开发者”怎么办？</summary>
+              <p class="mt-2 text-sm leading-6 text-slate-600">当前发布包可能未签名，系统安全提示属于正常现象。按系统提示允许后即可继续安装。</p>
+            </details>
+            <details class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <summary class="cursor-pointer font-semibold">身份数据是共享还是隔离？</summary>
+              <p class="mt-2 text-sm leading-6 text-slate-600">身份会话数据默认隔离，收藏夹为全局共享列表，方便跨身份复用常用网址。</p>
+            </details>
+            <details class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <summary class="cursor-pointer font-semibold">支持哪些系统？</summary>
+              <p class="mt-2 text-sm leading-6 text-slate-600">当前发布流程支持 macOS 与 Windows。</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="pt-16">
+          <div class="rounded-3xl border border-brand-200 bg-brand-50 p-8 md:p-10">
+            <h2 class="text-2xl font-black tracking-tight text-brand-700 md:text-3xl">准备好开始多身份工作流了吗？</h2>
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-brand-700/90 md:text-base">
+              下载 Doppel，减少账号切换成本，保持每个身份的独立上下文和稳定节奏。
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="https://github.com/crapthings/doppel/releases"
+                class="rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+                >前往下载</a
+              >
+              <a
+                href="https://github.com/crapthings/doppel"
+                class="rounded-xl border border-brand-300 bg-white px-6 py-3 text-sm font-semibold text-brand-700 transition hover:bg-brand-100"
+                >GitHub Star</a
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="mx-auto w-full max-w-6xl px-6 pb-10 pt-8 text-sm text-slate-500">
+        <div class="flex flex-col gap-2 border-t border-slate-200 pt-5 md:flex-row md:items-center md:justify-between">
+          <p>© <span id="year"></span> Doppel. MIT License.</p>
+          <p>Built with Electron + React + Tailwind CSS.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear()
+
+      const previewButtons = document.querySelectorAll('[data-preview-src]')
+      const overlay = document.createElement('div')
+      overlay.className = 'fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 p-4'
+      overlay.innerHTML = `
+        <button type="button" class="absolute right-4 top-4 rounded-lg border border-white/30 px-3 py-1 text-sm font-semibold text-white hover:bg-white/10" aria-label="关闭预览">关闭</button>
+        <img alt="" class="max-h-[92vh] max-w-[94vw] rounded-xl border border-white/20 shadow-2xl" />
+      `
+      document.body.appendChild(overlay)
+
+      const overlayImage = overlay.querySelector('img')
+      const closeButton = overlay.querySelector('button')
+
+      function closePreview () {
+        overlay.classList.add('hidden')
+        overlay.classList.remove('flex')
+        overlayImage.src = ''
+        overlayImage.alt = ''
+      }
+
+      previewButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          overlayImage.src = button.dataset.previewSrc || ''
+          overlayImage.alt = button.dataset.previewAlt || '预览图'
+          overlay.classList.remove('hidden')
+          overlay.classList.add('flex')
+        })
+      })
+
+      closeButton.addEventListener('click', closePreview)
+      overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) closePreview()
+      })
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closePreview()
+      })
+    </script>
+  </body>
+</html>

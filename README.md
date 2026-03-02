@@ -2,6 +2,12 @@
 
 多身份 Electron 浏览器工作台，支持身份隔离、Tab 管理、收藏夹主页和可视化配置。
 
+## 程序预览
+
+![Doppel Preview 1](./public/s1.png)
+![Doppel Preview 2](./public/s2.png)
+![Doppel Preview 3](./public/s3.png)
+
 ## 功能
 
 - 多身份隔离（每个身份独立 `partition`/会话）
